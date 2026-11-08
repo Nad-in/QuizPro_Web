@@ -1,0 +1,27 @@
+package com.quizpro.quizzpro.controllers;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.quizpro.quizzpro.entities.Utilisateur;
+import com.quizpro.quizzpro.services.AuthService;
+
+@RestController
+@RequestMapping("/api/auth")
+public class AuthController {
+	
+private AuthService utlServ;
+	
+	@Autowired
+	public AuthController(AuthService utlServ) {
+		this.utlServ=utlServ;
+	}
+	
+	@PostMapping("/insription")
+	public Utilisateur inscrir(@RequestBody Utilisateur utl) {
+		return utlServ.inscrire(utl);
+	}
+}
